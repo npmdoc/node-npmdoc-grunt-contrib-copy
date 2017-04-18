@@ -1,9 +1,14 @@
-# api documentation for  [grunt-contrib-copy (v1.0.0)](https://github.com/gruntjs/grunt-contrib-copy#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-grunt-contrib-copy.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-grunt-contrib-copy) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-grunt-contrib-copy.svg)](https://travis-ci.org/npmdoc/node-npmdoc-grunt-contrib-copy)
+# npmdoc-grunt-contrib-copy
+
+#### api documentation for  [grunt-contrib-copy (v1.0.0)](https://github.com/gruntjs/grunt-contrib-copy#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-grunt-contrib-copy.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-grunt-contrib-copy) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-grunt-contrib-copy.svg)](https://travis-ci.org/npmdoc/node-npmdoc-grunt-contrib-copy)
+
 #### Copy files and folders
 
-[![NPM](https://nodei.co/npm/grunt-contrib-copy.png?downloads=true)](https://www.npmjs.com/package/grunt-contrib-copy)
+[![NPM](https://nodei.co/npm/grunt-contrib-copy.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/grunt-contrib-copy)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-grunt-contrib-copy/build/screenCapture.buildNpmdoc.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmdoc%252Fnode-npmdoc-grunt-contrib-copy%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-grunt-contrib-copy/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-grunt-contrib-copy/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-grunt-contrib-copy/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-grunt-contrib-copy/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-grunt-contrib-copy/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-grunt-contrib-copy/build/screenCapture.npmPackageListing.svg)
 
@@ -79,33 +84,26 @@
     "main": "tasks/copy.js",
     "maintainers": [
         {
-            "name": "tkellen",
-            "email": "tyler@sleekcode.net"
+            "name": "tkellen"
         },
         {
-            "name": "cowboy",
-            "email": "cowboy@rj3.net"
+            "name": "cowboy"
         },
         {
-            "name": "shama",
-            "email": "kyle@dontkry.com"
+            "name": "shama"
         },
         {
-            "name": "vladikoff",
-            "email": "vlad@vladikoff.com"
+            "name": "vladikoff"
         },
         {
-            "name": "sindresorhus",
-            "email": "sindresorhus@gmail.com"
+            "name": "sindresorhus"
         },
         {
-            "name": "jmeas",
-            "email": "jellyes2@gmail.com"
+            "name": "jmeas"
         }
     ],
     "name": "grunt-contrib-copy",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/gruntjs/grunt-contrib-copy.git"
@@ -116,16 +114,6 @@
     "version": "1.0.0"
 }
 ```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module grunt-contrib-copy](#apidoc.module.grunt-contrib-copy)
-
-
-
-# <a name="apidoc.module.grunt-contrib-copy"></a>[module grunt-contrib-copy](#apidoc.module.grunt-contrib-copy)
 
 
 
