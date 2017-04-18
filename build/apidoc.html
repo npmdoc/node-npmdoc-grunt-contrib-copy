@@ -61,12 +61,151 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.grunt-contrib-copy">module grunt-contrib-copy</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-contrib-copy.grunt-contrib-copy">
+            function <span class="apidocSignatureSpan"></span>grunt-contrib-copy
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.grunt-contrib-copy" id="apidoc.module.grunt-contrib-copy">module grunt-contrib-copy</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-contrib-copy.grunt-contrib-copy" id="apidoc.element.grunt-contrib-copy.grunt-contrib-copy">
+        function <span class="apidocSignatureSpan"></span>grunt-contrib-copy
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">grunt-contrib-copy = function (grunt) {
+  var path = require(&#x27;path&#x27;);
+  var fs = require(&#x27;fs&#x27;);
+  var chalk = require(&#x27;chalk&#x27;);
+  var fileSyncCmp = require(&#x27;file-sync-cmp&#x27;);
+  var isWindows = process.platform === &#x27;win32&#x27;;
+
+  grunt.registerMultiTask(&#x27;copy&#x27;, &#x27;Copy files.&#x27;, function() {
+
+    var options = this.options({
+      encoding: grunt.file.defaultEncoding,
+      // processContent/processContentExclude deprecated renamed to process/noProcess
+      processContent: false,
+      processContentExclude: [],
+      timestamp: false,
+      mode: false
+    });
+
+    var copyOptions = {
+      encoding: options.encoding,
+      process: options.process || options.processContent,
+      noProcess: options.noProcess || options.processContentExclude
+    };
+
+    var detectDestType = function(dest) {
+      if (grunt.util._.endsWith(dest, &#x27;/&#x27;)) {
+        return &#x27;directory&#x27;;
+      } else {
+        return &#x27;file&#x27;;
+      }
+    };
+
+    var unixifyPath = function(filepath) {
+      if (isWindows) {
+        return filepath.replace(/\\/g, &#x27;/&#x27;);
+      } else {
+        return filepath;
+      }
+    };
+
+    var syncTimestamp = function (src, dest) {
+      var stat = fs.lstatSync(src);
+      if (path.basename(src) !== path.basename(dest)) {
+        return;
+      }
+
+      if (stat.isFile() &#x26;&#x26; !fileSyncCmp.equalFiles(src, dest)) {
+        return;
+      }
+
+      var fd = fs.openSync(dest, isWindows ? &#x27;r+&#x27; : &#x27;r&#x27;);
+      fs.futimesSync(fd, stat.atime, stat.mtime);
+      fs.closeSync(fd);
+    };
+
+    var isExpandedPair;
+    var dirs = {};
+    var tally = {
+      dirs: 0,
+      files: 0
+    };
+
+    this.files.forEach(function(filePair) {
+      isExpandedPair = filePair.orig.expand || false;
+
+      filePair.src.forEach(function(src) {
+        src = unixifyPath(src);
+        var dest = unixifyPath(filePair.dest);
+
+        if (detectDestType(dest) === &#x27;directory&#x27;) {
+          dest = isExpandedPair ? dest : path.join(dest, src);
+        }
+
+        if (grunt.file.isDir(src)) {
+          grunt.verbose.writeln(&#x27;Creating &#x27; + chalk.cyan(dest));
+          grunt.file.mkdir(dest);
+          if (options.mode !== false) {
+            fs.chmodSync(dest, (options.mode === true) ? fs.lstatSync(src).mode : options.mode);
+          }
+
+          if (options.timestamp) {
+            dirs[dest] = src;
+          }
+
+          tally.dirs++;
+        } else {
+          grunt.verbose.writeln(&#x27;Copying &#x27; + chalk.cyan(src) + &#x27; -&#x3e; &#x27; + chalk.cyan(dest));
+          grunt.file.copy(src, dest, copyOptions);
+          syncTimestamp(src, dest);
+          if (options.mode !== false) {
+            fs.chmodSync(dest, (options.mode === true) ? fs.lstatSync(src).mode : options.mode);
+          }
+          tally.files++;
+        }
+      });
+    });
+
+    if (options.timestamp) {
+      Object.keys(dirs).sort(function (a, b) {
+        return b.length - a.length;
+      }).forEach(function (dest) {
+        syncTimestamp(dirs[dest], dest);
+      });
+    }
+
+    if (tally.dirs) {
+      grunt.log.write(&#x27;Created &#x27; + chalk.cyan(tally.dirs.toString()) + (tally.dirs === 1 ? &#x27; directory&#x27; : &#x27; directories&#x27;));
+    }
+
+    if (tally.files) {
+      grunt.log.write((tally.dirs ? &#x27;, copied &#x27; : &#x27;Copied &#x27;) + chalk.cyan(tally.files.toString()) + (tally.files === 1 ? &#x27; file&#x27; : &#x27;
+files&#x27;));
+    }
+
+    grunt.log.writeln();
+  });
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 
